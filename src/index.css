@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "tailwindcss";
+
+
+
+:root {
+  --ink: #0a0f1f;         
+  --denim: #101731;      
+  --weave: #182146;        
+  --seam: #2a3563;        
+  --chalk: #e6ebf7;        
+  --dusk: #94a3b8;         
+  --stitch: #f97316;       
+  --stitch-soft: #fb923c;
+  --ff-display: "Bricolage Grotesque", "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --ff-body: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--ink);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+  color: var(--chalk);
+  font-family: var(--ff-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--ff-display);
+}
+
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 480px at 50% -8%, rgba(76, 99, 219, 0.18), transparent 70%),
+    repeating-linear-gradient(135deg, rgba(150, 168, 255, 0.035) 0 1px, transparent 1px 5px);
+}
+
+button, a, input, textarea {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+::selection {
+  background: var(--stitch);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--stitch-soft);
+  outline-offset: 3px;
+}
+
+/* ---------- Layout ---------- */
+
+.page-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* Label above a heading: a short dashed "stitch" instead of a solid bar */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dusk);
+}
+
+.section-label::before {
+  content: "";
+  width: 28px;
+  height: 0;
+  border-top: 2px dashed var(--stitch);
+}
+
+/* ---------- Buttons ---------- */
+
+.button-style {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--stitch);
+  color: var(--ink); /* dark text on orange = readable (white on orange is not) */
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid var(--stitch);
+  box-shadow: 0 8px 24px -10px rgba(249, 115, 22, 0.6);
+  cursor: pointer;
+}
+
+.button-style:hover {
+  transform: translateY(-2px);
+  background: var(--stitch-soft);
+  border-color: var(--stitch-soft);
+  box-shadow: 0 12px 28px -10px rgba(249, 115, 22, 0.7);
+}
+
+.button-style:disabled {
+  transform: none;
+}
+
+.button-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--chalk);
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid var(--seam);
+  cursor: pointer;
+}
+
+.button-outline:hover {
+  transform: translateY(-2px);
+  border-color: var(--stitch-soft);
+  background: rgba(249, 115, 22, 0.08);
+}
+
+/* ---------- Surfaces ---------- */
+
+.card {
+  background: var(--denim);
+  border-width: 1px;
+  border-color: var(--seam);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 24px 48px -32px rgba(0, 0, 0, 0.7);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.card-hover:hover {
+  border-color: rgba(249, 115, 22, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 28px 52px -30px rgba(249, 115, 22, 0.4);
+}
+
+.chip {
+  background: rgba(148, 163, 255, 0.1);
+  border-width: 1px;
+  border-color: rgba(148, 163, 255, 0.16);
+  color: #c8d0ee;
+}
+
+/* ---------- Form fields ---------- */
+
+.field {
+  width: 100%;
+  border-radius: 14px;
+  border-width: 1px;
+  border-color: var(--seam);
+  background: var(--ink);
+  color: var(--chalk);
+  padding: 12px 16px;
+  outline: none;
+}
+
+.field::placeholder {
+  color: #6f7ba6;
+}
+
+.field:focus {
+  border-color: var(--stitch-soft);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.18);
+}
+
+/* Stop browsers painting autofilled fields light yellow/blue */
+.field:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--ink) inset;
+  -webkit-text-fill-color: var(--chalk);
+  caret-color: var(--chalk);
+}
+
+/* ---------- The stitch motif ---------- */
+
+/* Portrait framed like a sewn-on patch */
+.patch {
+  position: relative;
+  padding: 12px;
+  border-radius: 32px;
+  background: var(--denim);
+  border-width: 1px;
+  border-color: var(--seam);
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.8);
+}
+
+.patch::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 27px;
+  border: 2px dashed rgba(249, 115, 22, 0.8);
+  pointer-events: none;
+}
+
+/* Quiet stitched inner border (bookends the hero patch at the page bottom) */
+.stitched {
+  position: relative;
+}
+
+.stitched::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 22px;
+  border: 2px dashed rgba(249, 115, 22, 0.32);
+  pointer-events: none;
+}
+
+/* Topstitch seam that sews itself in once under the hero name */
+.stitch-underline {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.stitch-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.1em;
+  height: 0.08em;
+  min-height: 4px;
+  background-image: repeating-linear-gradient(90deg, var(--stitch) 0 0.26em, transparent 0.26em 0.46em);
+  clip-path: inset(0 0 0 0);
+  animation: sew 1.5s 0.35s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@keyframes sew {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+  }
+}
